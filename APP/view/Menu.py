@@ -1,5 +1,10 @@
+import sys
+sys.path.append ("D:\Programa de desenvolvimneto gti\Banco de dados\APP")
+
+from config.DBConnection import *
 from Atendimento.Registro_pedido import *
 from Atendimento.Consulta_pedido import *
+from view.Gestao.Cadastro_pessoa import *
 
 from tkinter import *
 from tkinter import Tk
@@ -39,6 +44,7 @@ Barra_menu.add_cascade(label="Gestão de Produtos",menu=gestao_prod)
 
 # Gestão de clientes 
 gestao_cliente = Menu(Barra_menu, tearoff=0)
+gestao_cliente.add_command(label="Cadastro Pessoa",command= cadastro_pessoa)
 gestao_cliente.add_command(label="Cadastro de Cliente",command= None)
 gestao_cliente.add_command(label="Atualização de Cliente",command= None)
 gestao_cliente.add_command(label="Remoção de Cliente",command= None)
