@@ -2,6 +2,8 @@ from sqlalchemy.orm import DeclarativeBase, mapped_column, Mapped
 from sqlalchemy import INTEGER, NUMERIC, SMALLINT, VARCHAR, CHAR, DATE, NUMERIC, ForeignKey, func
 from datetime import datetime
 
+from config.DBConnection import *
+
 class Base(DeclarativeBase):
     pass
  
