@@ -1,11 +1,17 @@
 from sqlalchemy.orm import DeclarativeBase, mapped_column, Mapped
 from sqlalchemy import INTEGER, NUMERIC, SMALLINT, VARCHAR, CHAR, DATE, NUMERIC, ForeignKey, func
 from datetime import datetime
-
 from config.DBConnection import *
 
+
+
 class Base(DeclarativeBase):
-    pass
+
+    @classmethod
+    def add(cls):
+        session.add(cls)
+        session.flush()
+    
  
 class Municipio (Base):
     __tablename__ = 'MUNICIPIO'
@@ -14,7 +20,7 @@ class Municipio (Base):
     nm_estado: Mapped[str] = mapped_column(VARCHAR(50), nullable=False)
     nm_pais: Mapped[str] = mapped_column(VARCHAR(50), nullable=False)
 
-    
+
 
 class Estoque (Base):
     __tablename__ = 'ESTOQUE'
@@ -98,3 +104,5 @@ class Transacao (Base):
     qt_produto: Mapped[float] = mapped_column(NUMERIC(7,2), nullable=False)
     dt_transacao: Mapped[datetime] = mapped_column(DATE, nullable=False, server_default=func.sysdate())
 
+
+    
