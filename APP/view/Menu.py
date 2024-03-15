@@ -8,6 +8,7 @@ from Atendimento.consulta_pedido import *
 from view.Cadastro_Pessoa.cadastro_pessoa import *
 from view.Gestao_Cliente.cadastro_cliente import *
 from view.Gestao_Produto.cadastro_produto import *
+from view.Gestao_Produto.lista_produtos import *
 
 from tkinter import *
 from tkinter import Tk
@@ -17,7 +18,7 @@ from tkinter import Tk
 #Criação da Janela PRINCIPAL = app
 app = Tk()
 app.title("App Controle de Estoque")
-app.geometry("635x300")
+app.geometry("780x350")
 app.configure(background="#dde")
 
 ## Menu ##
@@ -43,6 +44,7 @@ gestao_prod = Menu(Barra_menu, tearoff=0)
 gestao_prod.add_command(label="Cadastro de Produto",command= cadastro_produto)
 gestao_prod.add_command(label="Atualização de Produto",command= None)
 gestao_prod.add_command(label="Remoção de Produto",command= None)
+gestao_prod.add_command(label="Lista de Produtos",command= lista_produtos)
 Barra_menu.add_cascade(label="Gestão de Produtos",menu=gestao_prod)
 
 # Gestão de clientes 
@@ -72,4 +74,3 @@ Barra_menu.add_cascade(label="Sistema",menu=menu_fechar)
 
 app.config(menu=Barra_menu)
 app.mainloop()
-
