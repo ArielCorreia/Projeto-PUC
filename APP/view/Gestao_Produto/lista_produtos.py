@@ -19,7 +19,7 @@ def preencher_tv(tree):
         tree.delete(i)
 
     # Consultar os produtos do Banco de dados
-    produtos = session.query(Produto).all()
+    produtos = session.query(Produto).order_by(Produto.nm_produto).all()
 
     # adicionar os dados do produtos no TreeV    
     for produto in produtos:
