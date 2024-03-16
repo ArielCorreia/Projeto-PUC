@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, datetime
 from tkinter import *
 from tkinter import Toplevel, Label, Entry, Button
 from tkinter import ttk
@@ -21,7 +21,7 @@ def preencher_tv(tree):
     # Consultar os produtos do Banco de dados
     produtos = session.query(Produto).order_by(Produto.nm_produto).all()
 
-    # adicionar os dados do produtos no TreeV    
+    # adicionar os dados do produtos no TreeV  ordem alfab.
     for produto in produtos:
         tree.insert("","end", values=(produto.cd_produto,produto.nm_produto, produto.ds_produto, produto.tp_embalagemproduto))
 
@@ -81,14 +81,17 @@ def lista_produtos():
         id_produto = id_entry.get()
         numero_lote = nr_lote_entry.get()
         qt_produto = qt_prod_entry.get()
-        data_validade = dt_validade_entry.get()
+        dt_validade = dt_validade_entry.get()
         locacao = locacao_entry.get()
+
+        dt_validade_str  = datetime.strptime(dt_validade, '%d-%m-%Y').date()
+
 
         # Obter a data atual
         dt_prod_estoq = date.today()
 
         # Criar uma nova instância de Produto_estoque com os dados inseridos
-        novo_prod_estoque = Produto_estoque(cd_produto=id_produto, cd_estoque=locacao, nr_lote=numero_lote, qt_produtoestoque= qt_produto, dt_validade=data_validade, dt_produtoestoque=dt_prod_estoq)
+        novo_prod_estoque = Produto_estoque(cd_produto=id_produto, cd_estoque=locacao, nr_lote=numero_lote, qt_produtoestoque= qt_produto, dt_validade=dt_validade_str, dt_produtoestoque=dt_prod_estoq)
 
         try:
             session.add(novo_prod_estoque)
@@ -108,5 +111,5 @@ def lista_produtos():
         dt_validade_entry.delete(0, END)
         locacao_entry.delete(0, END)
 
-    btn_inserir_estoque = Button(lista_produtos,text="Abastecer estoque", command= add_produto_estoque)
+    btn_inserir_estoque = Button(lista_produtos,text="Registar produto no estoque", command= add_produto_estoque)
     btn_inserir_estoque.place(x=450, y=70)
