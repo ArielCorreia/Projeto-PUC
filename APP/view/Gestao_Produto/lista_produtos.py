@@ -34,25 +34,25 @@ def lista_produtos():
     lista_produtos.geometry("1000x450")
     lista_produtos.configure(background="#dde")
 
-    Label(lista_produtos, text="ID produto:", background='#dde', anchor=W).place(x=10, y=30, width=70, height=20)
+    Label(lista_produtos, text="ID produto:", background='#dde', anchor=W).place(x=50, y=30, width=70, height=20)
     id_entry  = Entry(lista_produtos)
-    id_entry.place(x=90, y=30, width=110, height=20)
+    id_entry.place(x=130, y=30, width=60, height=20)
 
-    Label(lista_produtos, text="NR Lote:", background='#dde', anchor=W).place(x=250, y=30, width=70, height=20)
+    Label(lista_produtos, text="NR Lote:", background='#dde', anchor=W).place(x=240, y=30, width=70, height=20)
     nr_lote_entry = Entry(lista_produtos)
-    nr_lote_entry.place(x=330, y=30, width=70, height=20)
+    nr_lote_entry.place(x=320, y=30, width=70, height=20)
 
-    Label(lista_produtos, text="Quantidade:", background='#dde', anchor=W).place(x=450, y=30, width=70, height=20)
+    Label(lista_produtos, text="Quantidade:", background='#dde', anchor=W).place(x=440, y=30, width=70, height=20)
     qt_prod_entry  = Entry(lista_produtos)
-    qt_prod_entry.place(x=530, y=30, width=40, height=20)
+    qt_prod_entry.place(x=520, y=30, width=40, height=20)
 
-    Label(lista_produtos, text="Data de validade:", background='#dde', anchor=W).place(x=620, y=30, width=95, height=20)
+    Label(lista_produtos, text="Data de validade:", background='#dde', anchor=W).place(x=610, y=30, width=95, height=20)
     dt_validade_entry  = Entry(lista_produtos)
-    dt_validade_entry.place(x=725, y=30, width=70, height=20)
+    dt_validade_entry.place(x=715, y=30, width=70, height=20)
 
-    Label(lista_produtos, text="Locação:", background='#dde', anchor=W).place(x=845, y=30, width=60, height=20)
+    Label(lista_produtos, text="Locação:", background='#dde', anchor=W).place(x=835, y=30, width=60, height=20)
     locacao_entry  = Entry(lista_produtos)
-    locacao_entry.place(x=915, y=30, width=40, height=20)
+    locacao_entry.place(x=905, y=30, width=40, height=20)
 
     # Criacao da TreeView para exibir os prodts
     tview = ttk.Treeview(lista_produtos, columns=("ID","Nome", "Descrição", "Embalagem"), show='headings')
@@ -72,7 +72,7 @@ def lista_produtos():
     preencher_tv(tview) #Chama a função
 
     #Posicionar o Tview na janela PADX = MARGEM DE FORA ,IPADX = DENTRO
-    tview.pack(padx=5, ipadx=120,ipady=240,pady=120, anchor='n')
+    tview.pack(padx=0, ipadx=130,ipady=240,pady=120, anchor='n')
 
 
     def add_produto_estoque():
@@ -85,7 +85,7 @@ def lista_produtos():
         locacao = locacao_entry.get()
 
         dt_validade_str  = datetime.strptime(dt_validade, '%d-%m-%Y').date()
-
+        
 
         # Obter a data atual
         dt_prod_estoq = date.today()
@@ -112,4 +112,8 @@ def lista_produtos():
         locacao_entry.delete(0, END)
 
     btn_inserir_estoque = Button(lista_produtos,text="Registar produto no estoque", command= add_produto_estoque)
-    btn_inserir_estoque.place(x=450, y=70)
+    btn_inserir_estoque.place(x=50, y=70)
+
+
+
+    
