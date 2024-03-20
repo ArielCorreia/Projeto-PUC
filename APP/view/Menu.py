@@ -9,6 +9,7 @@ from view.Cadastro_Pessoa.cadastro_pessoa import *
 from view.Gestao_Cliente.cadastro_cliente import *
 from view.Gestao_Produto.cadastro_produto import *
 from view.Gestao_Produto.lista_produtos import *
+from view.Controle_Estoque.lista_estoque import *
 
 from tkinter import *
 from tkinter import Tk
@@ -34,7 +35,7 @@ Barra_menu.add_cascade(label="Atendimento",menu=atendimento)
 
 # Controle de estoque
 controle_est = Menu(Barra_menu, tearoff=0)
-controle_est.add_command(label="Consulta de Estoque",command= None)
+controle_est.add_command(label="Consulta de Estoque",command= lista_produtos_estoque)
 controle_est.add_command(label="Registro de Entrada",command= None)
 controle_est.add_command(label="Registro de Saída",command= None)
 Barra_menu.add_cascade(label="Controle de Estoque",menu=controle_est)
