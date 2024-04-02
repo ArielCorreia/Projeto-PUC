@@ -8,6 +8,7 @@ from view.Atendimento.consulta_pedido import *
 
 from view.Controle_Estoque.lista_estoque import lista_produtos_estoque
 from view.Controle_Estoque.consultar_produto import consultar_produto_estoque
+from view.Controle_Estoque.movimentacao_produto import consultar_movimentacao
 
 from view.Gestao.produto.cadastro_produto import cadastro_produto
 from view.Gestao.produto.lista_produtos import *
@@ -39,7 +40,7 @@ controle_est = Menu(Barra_menu, tearoff=0)
 controle_est.add_command(label="Produtos em Estoque",command= lista_produtos_estoque)
 controle_est.add_separator()
 controle_est.add_command(label="Consultar Produto",command= consultar_produto_estoque)
-controle_est.add_command(label="Movimentação do Produto",command= None)
+controle_est.add_command(label="Movimentação do Produto",command= consultar_movimentacao)
 controle_est.add_separator()
 controle_est.add_command(label="Alterar Locação",command= None)
 Barra_menu.add_cascade(label="Controle de Estoque",menu=controle_est)
@@ -78,5 +79,7 @@ Barra_menu.add_cascade(label="Sistema",menu=menu_fechar)
 
 app.config(menu=Barra_menu)
 app.mainloop()
+
+
 
 
