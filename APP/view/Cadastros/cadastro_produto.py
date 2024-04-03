@@ -69,6 +69,11 @@ def cadastro_produto():
             session.rollback()
             showinfo("Cadastro de Produto", f"Erro inesperado:{str (e)}")
 
+        # Limpar os campos de entrada após a inserção
+        nome_produto_entry.delete(0, 'end')  
+        embalagem_var.set('') 
+        ds_produto_entry.delete(0, 'end')  
+        valor_produto_entry.delete(0, 'end')  
             
         # Botao para inserir os dados
     Register = Button(cadastro_produto, text="Registrar", width=30, command=registro_produto_BD)
