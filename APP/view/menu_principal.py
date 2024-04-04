@@ -11,11 +11,11 @@ from view.Controle_Estoque.consultar_produto import consultar_produto_estoque
 from view.Controle_Estoque.alterar_locacao import lista_prod_locacao
 
 from view.Cadastros.cadastro_produto import cadastro_produto
-from view.Gestao.produto.lista_produtos import *
 from view.Cadastros.cadastro_cliente import cadastro_cliente_PF,cadastro_cliente_PJ
 
 from view.Gestao.produto.atualizacao_produto import atualiza_produto
-
+from view.Gestao.produto.lista_produtos import *
+from view.Gestao.produto.remover_produto import remover_produto
 
 from tkinter import *
 
@@ -51,7 +51,7 @@ Barra_menu.add_cascade(label="Controle de Estoque",menu=controle_est)
 # Gestão de produtos 
 gestao_prod = Menu(Barra_menu, tearoff=0)
 gestao_prod.add_command(label="Atualização de Produto",command= atualiza_produto)
-gestao_prod.add_command(label="Remoção de Produto",command= None)
+gestao_prod.add_command(label="Remoção de Produto",command= remover_produto)
 gestao_prod.add_separator()
 gestao_prod.add_command(label="Lista de Produtos",command= lista_produtos)
 Barra_menu.add_cascade(label="Gestão de Produtos",menu=gestao_prod)
@@ -82,5 +82,7 @@ Barra_menu.add_cascade(label="Sistema",menu=menu_fechar)
 
 app.config(menu=Barra_menu)
 app.mainloop()
+
+
 
 
