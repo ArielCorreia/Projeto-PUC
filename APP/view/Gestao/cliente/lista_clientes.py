@@ -50,7 +50,7 @@ def preencher_tv_pessoa_juridica(tree):
 
     # Adiciona os dados ao TreeView
     for pessoa in pessoas:
-        tree.insert("", "end", values=(pessoa.cd_pessoa_juridica, pessoa.nm_pessoa, pessoa.nr_telefone, pessoa.nm_email))
+        tree.insert("", "end", values=(pessoa.cd_pessoa_juridica, pessoa.nm_pessoa, pessoa.nr_telefone, pessoa.nm_email, pessoa.nm_razaosocial))
     
 
 # Funcao para abrir a janela de listas de produtos
@@ -76,17 +76,20 @@ def lista_pessoas():
     tp_cliente_dropdown = OptionMenu(lista_pessoas, tp_cliente, *tp_cliente_options, command=on_cliente_select)
     tp_cliente_dropdown.place(x=10, y= 70)
 
-    tview = ttk.Treeview(lista_pessoas, columns=("Matricula","Nome", "Telefone", "E-mail"), show='headings')
+    tview = ttk.Treeview(lista_pessoas, columns=("Matricula","Nome", "Telefone", "E-mail", "Razão social"), show='headings')
     tview.heading("Matricula", text="Matricula")
     tview.heading("Nome", text="Nome")
     tview.heading("Telefone", text="Telefone")
     tview.heading("E-mail", text="E-mail")
+    tview.heading("Razão social", text="Razão social")
 
     tview.column('Matricula', minwidth=0, width=35)
     tview.column('Nome', minwidth=0, width=150)
     tview.column('Telefone', minwidth=0, width=35)
     tview.column('E-mail', minwidth=0, width=50)
+    tview.column('Razão social', minwidth=0, width=60)
 
-    tview.pack(padx=10, ipadx=250,ipady=280,pady=80, anchor='n')
+    tview.pack(padx=10, ipadx=250,ipady=280,pady=100, anchor='n')
    
+
 
