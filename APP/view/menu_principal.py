@@ -17,6 +17,8 @@ from view.Gestao.produto.atualizacao_produto import atualiza_produto
 from view.Gestao.produto.lista_produtos import *
 from view.Gestao.produto.remover_produto import remover_produto
 
+from view.Gestao.cliente.lista_clientes import lista_pessoas
+
 from tkinter import *
 
 
@@ -63,6 +65,8 @@ gestao_cliente.add_command(label="Atualização de Pessoa Jurídica",command= No
 gestao_cliente.add_separator()
 gestao_cliente.add_command(label="Remoção de Pessoa Física",command= None)
 gestao_cliente.add_command(label="Remoção de Pessoa Jurídica",command= None)
+gestao_cliente.add_separator()
+gestao_cliente.add_command(label="Lista de clientes",command= lista_pessoas)
 Barra_menu.add_cascade(label="Gestão de Clientes",menu=gestao_cliente)
 
 
@@ -82,7 +86,6 @@ Barra_menu.add_cascade(label="Sistema",menu=menu_fechar)
 
 app.config(menu=Barra_menu)
 app.mainloop()
-
 
 
 
