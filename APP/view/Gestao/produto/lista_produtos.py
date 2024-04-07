@@ -2,10 +2,9 @@ from datetime import date, datetime
 from tkinter import *
 from tkinter import Toplevel, Label, Entry, Button
 from tkinter import ttk
-
-from models.estoque import Estoque
+from sqlalchemy import values
+from models.produto_estoque import Produto_Estoque
 from models.produto import Produto
-from models.produto_estoque import Produto_estoque
 from config.DBConnection import *
 from tkinter.messagebox import showinfo
 from sqlalchemy.exc import IntegrityError
@@ -46,6 +45,7 @@ def lista_produtos():
     qt_prod_entry.place(x=520, y=30, width=40, height=20)
 
     Label(lista_produtos, text="Data de validade:", background='#dde', anchor=W).place(x=610, y=30, width=95, height=20)
+    Label(lista_produtos, text="(dd/mm/yyyy)", background='#dde', anchor=W).place(x=615, y=50, width=95, height=20)
     dt_validade_entry  = Entry(lista_produtos)
     dt_validade_entry.place(x=715, y=30, width=70, height=20)
 
@@ -86,19 +86,30 @@ def lista_produtos():
         dt_validade = dt_validade_entry.get()
         locacao = locacao_entry.get()
 
-        dt_validade_str  = datetime.strptime(dt_validade, '%d-%m-%Y').date()
-        
+        dt_validade_str  = datetime.strptime(dt_validade, '%d/%m/%Y').date()
 
+        if session.query(Produto_Estoque).filter_by(cd_estoque=locacao).first():
+            showinfo("Erro: Estoque", "Erro: A locação já está ocupada.")
+            return
+        
         # Obter a data atual
         dt_prod_estoq = date.today()
 
         # Criar uma nova instância de Produto_estoque com os dados inseridos
-        novo_prod_estoque = Produto_estoque(cd_produto=id_produto, cd_estoque=locacao, nr_lote=numero_lote, qt_produtoestoque= qt_produto, dt_validade=dt_validade_str, dt_produtoestoque=dt_prod_estoq)
+        novo_prod_estoque = Produto_Estoque(cd_produto=id_produto, cd_estoque=locacao, nr_lote=numero_lote, qt_produtoestoque= qt_produto, dt_validade=dt_validade_str, dt_produtoestoque=dt_prod_estoq)
 
         try:
             session.add(novo_prod_estoque)
             session.commit()
+
+            id_entry.delete(0, END)
+            nr_lote_entry.delete(0, END)
+            qt_prod_entry.delete(0, END)
+            dt_validade_entry.delete(0, END)
+            locacao_entry.delete(0, END)
+
             showinfo("Estoque", "Inserção realizada com sucesso!")
+
         except IntegrityError:
             session.rollback()
             showinfo("Erro: Estoque", "Erro: Ocorreu uma violação de integridade. Verifique se os campos informados estão preenchidos com os dados corretos.")
@@ -117,7 +128,5 @@ def lista_produtos():
 
     btn_inserir_estoque = Button(lista_produtos,text="Registar produto no estoque", command= add_produto_estoque)
     btn_inserir_estoque.place(x=50, y=70)
-
-
 
     
